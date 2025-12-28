@@ -5,10 +5,7 @@ app = FastAPI()
 
 @app.get("/")
 def root():
-    return {
-        "status": "OK",
-        "message": "IA Trading Visual Backend activo"
-    }
+    return {"status":"OK","message":"Backend activo"}
 
 @app.post("/analyze")
 async def analyze(file: UploadFile):
