@@ -217,10 +217,13 @@ async function sendToBackend(){
   const form=new FormData();
   form.append("file",file);
 
-  const response=await fetch("https://TU_BACKEND/analyze",{
-    method:"POST",
-    body:form
-  });
+  const response=await fetch(
+    "https://ia-trading-visual.onrender.com/analyze",
+    {
+      method:"POST",
+      body:form
+    }
+  );
 
   const data=await response.json();
   showResults(data);
@@ -236,20 +239,20 @@ function showResults(data){
     (data.decision==="OPERAR"?"green":
      data.decision==="ESPERAR"?"yellow":"red");
 
-  document.getElementById("scenario").textContent=
-    data.direction||"Condiciones no válidas";
+  document.getElementById("scenario").textContent =
+    data.direction || "Condiciones no válidas";
 
-  document.getElementById("direction").textContent=
-    data.direction||"-";
+  document.getElementById("direction").textContent =
+    data.direction || "-";
 
-  document.getElementById("probability").textContent=
-    data.probability||"-";
+  document.getElementById("probability").textContent =
+    data.probability || "-";
 
-  document.getElementById("timeframe").textContent=
-    data.timeframe||"-";
+  document.getElementById("timeframe").textContent =
+    data.timeframe || "-";
 
-  document.getElementById("risk").textContent=
-    data.risk||"-";
+  document.getElementById("risk").textContent =
+    data.risk || "-";
 }
 </script>
 </body>
