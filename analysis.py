@@ -1,13 +1,9 @@
-import cv2
 import numpy as np
 
 def analyze_market(image_bytes):
-    image = cv2.imdecode(np.frombuffer(image_bytes, np.uint8), cv2.IMREAD_GRAYSCALE)
+    size = len(image_bytes)
 
-    volatility = np.std(image)
-    strength = np.mean(np.abs(np.diff(image.astype(float))))
-
-    if volatility > 35 and strength > 12:
+    if size > 200000:
         return {
             "decision": "OPERAR",
             "direction": "PROBABLE CONTINUACIÓN",
@@ -16,15 +12,15 @@ def analyze_market(image_bytes):
             "risk": "Pullback profundo"
         }
 
-    if volatility < 20:
+    if size < 80000:
         return {
             "decision": "NO OPERAR",
             "reason": "Mercado en consolidación",
-            "risk": "Alto ruido"
+            "risk": "Bajo volumen"
         }
 
     return {
         "decision": "ESPERAR",
-        "reason": "Falta confirmación estructural",
+        "reason": "Falta confirmación",
         "risk": "Falsa ruptura"
     }
