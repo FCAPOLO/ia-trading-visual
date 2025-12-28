@@ -218,7 +218,7 @@ async function sendToBackend(){
   form.append("file",file);
 
   const response=await fetch(
-    "https://ia-trading-visual.onrender.com/analyze",
+    "https://ia-trading-visual.onrender.com",
     {
       method:"POST",
       body:form
@@ -257,3 +257,4 @@ function showResults(data){
 </script>
 </body>
 </html>
+
